@@ -1,0 +1,24 @@
+.resultArea {
+  background-color: rgb(255, 213, 159);
+  padding-bottom: 50px;
+}
+
+.resultArea h1 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.linkMap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px 25px 25px 25px;
+  background-color: rgb(238, 202, 105);
+}
