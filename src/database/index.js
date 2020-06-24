@@ -32,3 +32,25 @@ module.exports = {
   getEverything,
   createLinkForTable,
 };
+
+//mongo stuff below
+
+// const mongoose = require("mongoose");
+// const url = "mongodb://localhost:27017/test";
+
+// async function connectMongoose() {
+//   return new Promise((resolve, reject) => {
+//     mongoose.connect(url, { useNewUrlParser: true });
+//     const db = mongoose.connection;
+//     db.on("connect", () => {
+//       console.log("i connected");
+//       resolve("Done connecting");
+//     });
+//     db.on("error", (error) => {
+//       console.error("Did not connect");
+//       reject(error);
+//     });
+//   });
+// }
+
+// module.exports = { connectMongoose };

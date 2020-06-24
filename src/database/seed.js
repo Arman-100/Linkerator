@@ -5,7 +5,10 @@ async function buildTables() {
     console.log("its working");
     client.connect();
 
-    await client.query(`DROP TABLE IF EXISTS links;`);
+    await client.query(`
+    DROP TABLE IF EXISTS taglinks;
+    DROP TABLE IF EXISTS tags;
+    DROP TABLE IF EXISTS links;`);
     await client.query(
       `
         CREATE TABLE links (
@@ -13,6 +16,17 @@ async function buildTables() {
             name varchar(255) UNIQUE NOT NULL,
             url varchar(255) NOT NULL,
             logo varchar(255) NOT NULL
+        );
+
+        CREATE TABLE tags (
+          id SERIAL PRIMARY KEY,
+          name varchar(255) UNIQUE NOT NULL
+        );
+
+        CREATE TABLE tagLinks (
+          id SERIAL PRIMARY KEY,
+          "linksId" INTEGER REFERENCES links(id),
+          "tagsId" INTEGER REFERENCES tags(id)
         );
         `
     );
