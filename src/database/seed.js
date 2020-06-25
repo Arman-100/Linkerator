@@ -43,6 +43,21 @@ async function populateInitialData() {
       url: "www.google.com",
       logo: "//logo.clearbit.com/google.com",
     });
+    const reddit = await createLinkForTable({
+      name: "Reddit",
+      url: "https://www.reddit.com/",
+      logo: "//logo.clearbit.com/reddit.com",
+    });
+    const espn = await createLinkForTable({
+      name: "ESPN",
+      url: "https://www.espn.com/",
+      logo: "//logo.clearbit.com/espn.com",
+    });
+    const amazon = await createLinkForTable({
+      name: "Amazon",
+      url: "https://amazon.com/",
+      logo: "//logo.clearbit.com/amazon.com",
+    });
     console.log(google);
   } catch (error) {
     console.log(error);

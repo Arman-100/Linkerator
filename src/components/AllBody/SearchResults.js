@@ -1,9 +1,7 @@
-import React from "react";
-import Mylinks from "../TestData";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import SingleEntry from "./SingleEntry";
 import "./SearchResults.css";
-
-console.log(Mylinks);
 
 function createResult(linkData) {
   return (
@@ -16,11 +14,23 @@ function createResult(linkData) {
   );
 }
 
+async function getMyLinks() {
+  const myLinks = await axios.get("/api/user/:userId/sites");
+  console.log("MyLinks are ", myLinks.data);
+  return myLinks.data;
+}
+
 function SearchResults() {
+  const [myLinks, setMyLinks] = useState([]);
+  useEffect(() => {
+    getMyLinks().then((results) => {
+      setMyLinks(results);
+    });
+  }, []);
   return (
     <div className="resultArea">
       <h1>Results</h1>
-      <dl className="linkMap">{Mylinks.map(createResult)}</dl>
+      <dl className="linkMap">{myLinks.map(createResult)}</dl>
     </div>
   );
 }
