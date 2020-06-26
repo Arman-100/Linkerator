@@ -11,6 +11,8 @@ function SingleEntry(props) {
         <h2>{props.name}</h2>
       </a>
       <a href={props.url}>{props.url}</a>
+      <div> Count: 0 </div>
+      <div> tags: [tag 1, tag 2 ]</div>
     </div>
   );
 }

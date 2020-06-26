@@ -1,4 +1,9 @@
-const { client, createLinkForTable, getEverything } = require("./index");
+const {
+  client,
+  createLinkForTable,
+  getEverything,
+  createTagsForTable,
+} = require("./index");
 
 async function buildTables() {
   try {
@@ -58,7 +63,12 @@ async function populateInitialData() {
       url: "https://amazon.com/",
       logo: "//logo.clearbit.com/amazon.com",
     });
-    console.log(google);
+    const googleTags = await createTagsForTable([
+      "search",
+      "engine",
+      "popular",
+    ]);
+    console.log(googleTags);
   } catch (error) {
     console.log(error);
   }

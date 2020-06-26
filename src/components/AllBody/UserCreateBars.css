@@ -1,0 +1,23 @@
+.userCreateBars {
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 30px;
+}
+
+.createTitle {
+  text-align: center;
+}
+
+.userCreateArea {
+  background-color: antiquewhite;
+}
+
+input {
+  font-size: 20px;
+}
+
+textarea {
+  font-size: 15px;
+}

@@ -27,10 +27,30 @@ async function createLinkForTable({ name, url, logo }) {
   }
 }
 
+async function createTagsForTable([name]) {
+  try {
+    const {
+      rows: [tags],
+    } = await client.query(
+      `
+      INSERT INTO tags(name)
+      VALUES($1)
+      ON CONFLICT (name) DO NOTHING
+      RETURNING *;
+      `,
+      [name]
+    );
+    return tags;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   client,
   getEverything,
   createLinkForTable,
+  createTagsForTable,
 };
 
 //mongo stuff below
