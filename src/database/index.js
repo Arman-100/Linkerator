@@ -27,22 +27,35 @@ async function createLinkForTable({ name, url, logo }) {
   }
 }
 
-async function createTagsForTable([name]) {
+async function createTagsForTable(tagList) {
+  if (tagList.length === 0) {
+    return;
+  }
+
+  const insertValues = tagList.map((_, index) => `$${index + 1}`).join("), (");
+  const selectValues = tagList.map((_, index) => `$${index + 1}`).join(", ");
+
   try {
-    const {
-      rows: [tags],
-    } = await client.query(
+    await client.query(
       `
-      INSERT INTO tags(name)
-      VALUES($1)
-      ON CONFLICT (name) DO NOTHING
-      RETURNING *;
-      `,
-      [name]
+    INSERT INTO tags(name)
+    VALUES (${insertValues})
+    ON CONFLICT (name) DO NOTHING;
+    `,
+      tagList
     );
-    return tags;
+
+    const { rows } = await client.query(
+      `
+    SELECT * FROM tags
+    WHERE name IN (${selectValues});
+    `,
+      tagList
+    );
+
+    return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 }
 
